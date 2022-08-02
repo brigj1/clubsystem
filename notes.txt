@@ -447,16 +447,15 @@ Head to the browser and open up http://localhost:3000/hello
 
 Looks good. Let's commit:
 
-
+➜  clubsystem git:(main) ✗ git add .
+➜  clubsystem git:(main) ✗ git commit -m "set up ruby, lots of rails generators, migrations"
 ________________________________________________________________
 rails g controller fallback
-rails g controller api/sessions
+➜  clubsystem git:(main) ✗ rails g controller fallback
+      create  app/controllers/fallback_controller.rb
 
 add this to config/routes.rb:
 get "*path", to: "fallback#index", constraints: ->(req) { !req.xhr? && req.format.html? }
-
-➜  heroku_clubbing git:(main) rails g controller fallback
-      create  app/controllers/fallback_controller.rb
 
 modify fallback_controller.rb to contain:
 class FallbackController < ActionController::Base
@@ -464,16 +463,149 @@ class FallbackController < ActionController::Base
     render file: 'public/index.html'
   end
 end
+
+➜  clubsystem git:(main) ✗ rails g controller fallback
+      create  app/controllers/fallback_controller.rb
+➜  clubsystem git:(main) ✗ vi config/routes.rb 
+➜  clubsystem git:(main) ✗ vi app/controllers/fallback_controller.rb 
 ________________________________________________________________
+Prepare for namespacing routes
+
+vi config/routes.rb
+
+namespace :api do
+  resources :club_members
+  resources :clubs
+  resources :users, only: [:index]
+
+  get "/me", to: "users#show"
+  post "/signup", to: "users#create"
+  post "/login", to: "sessions#create"
+  delete "/logout", to: "sessions#destroy"
+end
+
+# don't inlude the fallback route in the :api namespace
+________________________________________________________________
+# app/controllers/application_controller.rb
+class ApplicationController < ActionController::API
+  include ActionController::Cookies
+  rescue_from ActiveRecord::RecordInvalid, with: :render_validation_errors
+  rescue_from ActiveRecord::RecordNotFound, with: :render_not_found
+  before_action :authenticate_user
+  
+  private
+
+  # mocked for now to return the first user
+  # later on this will return the user that's currently logged in
+  # (after we know how to do authentication)
+  def current_user
+    @current_user ||= User.find_by_id(session[:user_id])
+  end
+
+  def render_validation_errors(e)
+    render json: { errors: e.record.errors }, status: :unprocessable_entity
+  end
+  
+  def render_not_found(e)
+    render json: { errors: e.message }, status: :not_found
+  end
+
+  def authenticate_user
+    return if current_user
+    render json: { errors: "You must be logged in to do that." }, status: :unauthorized
+  end
+
+end
+________________________________________________________________
+➜  clubsystem git:(main) ✗ mkdir app/controllers/api
+rails g controller api/sessions
+➜  clubsystem git:(main) ✗ rails g controller api/sessions
+      create  app/controllers/api/sessions_controller.rb
+
+vi app/controllers/api/sessions_controller.rb
+
+class Api::SessionsController < ApplicationController
+  skip_before_action :authenticate_user
+
+  # post '/login'
+  def create
+    user = User.find_by_username(params[:username])
+    if user&.authenticate(params[:password])
+      session[:user_id] = user.id
+      render json: user, status: :ok
+    else
+      render json: { error: 'invalid credentials' }, status: :unauthorized
+    end
+  end
+
+  # delete '/logout'
+  def destroy
+    session.delete(:user_id)
+  end
+
+end
+________________________________________________________________
+# app/controllers/api/users_controller.rb
+
+class Api::UsersController < ApplicationController
+    skip_before_action :authenticate_user
+    
+    # get '/api/me'
+    def show
+      if current_user
+        render json: current_user, status: :ok
+      else
+        render json: { error: 'No active session' }, status: :unauthorized
+      end
+    end
+  
+    # post '/api/signup'
+    def create
+      user = User.create(user_params)
+      if user.valid?
+        session[:user_id] = user.id
+        render json: user, status: :ok
+      else
+        render json: { error: user.errors }, status: :unprocessable_entity
+      end
+    end
+  
+    private
+  
+    def user_params
+      params.permit(:username, :first_name, :last_name, :age, :bio, :email,
+        :password, :password_confirmation)
+    end
+  
+end
+________________________________________________________________
+# app/controllers/api/clubs_controller.rb
+class Api::ClubsController < ApplicationController
+  def index
+    render json: Club.all
+  end
+end
 
 ________________________________________________________________
+add below to app/models/userb.rb
 
+  has_secure_password
+
+  validates :username, presence: true, uniqueness: true
 ________________________________________________________________
-
+mv controller files to app; be sure the class name is prefixed with "Api::"
+➜  controllers git:(main) ✗ git mv club_members_controller.rb api
+➜  controllers git:(main) ✗ git mv clubs_controller.rb api
+➜  controllers git:(main) ✗ git mv users_controller.rb api
 ________________________________________________________________
+Head to the browser and open up http://localhost:3000/hello. You should see a JSON
+response with an initial value of { count: 1}. If your sessions and cookies are
+configured correctly, you should be able to refresh the page and see the count
+increment by 1 each time. 
 
-________________________________________________________________
-
+Also working:
+http://localhost:3000/api/clubs
+http://localhost:3000/api/users/1
 ________________________________________________________________
 
 ________________________________________________________________
