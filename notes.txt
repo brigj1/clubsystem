@@ -1,0 +1,479 @@
+heroku login
+(brig.johnson@gmail.com)
+
+➜  clubsystem rvm list
+   ruby-2.7.4 [ arm64 ]
+=* ruby-2.7.6 [ arm64 ]
+
+# => - current
+# =* - current && default
+#  * - default
+
+
+➜  clubsystem gem install bundler
+Successfully installed bundler-2.3.19
+Parsing documentation for bundler-2.3.19
+Done installing documentation for bundler after 0 seconds
+1 gem installed
+➜  clubsystem gem install rails
+Successfully installed rails-7.0.3.1
+Parsing documentation for rails-7.0.3.1
+Installing ri documentation for rails-7.0.3.1
+Done installing documentation for rails after 0 seconds
+1 gem installed
+➜  clubsystem rails -v
+Rails 7.0.3.1
+
+
+Oops, we want 6.1.6. I think it will be fine to call it out on the invocation as per Aysan's notes.
+
+postgresql is installed on my Mac
+
+
+ ✗ node -v
+v16.14.2
+
+
+➜  react-rails-project-setup-guide git:(main) ✗ npm i -g npm
+
+changed 17 packages, and audited 202 packages in 1s
+
+11 packages are looking for funding
+  run `npm fund` for details
+
+found 0 vulnerabilities
+
+________________________________________________________________
+Rails Setup
+eg: rails _6.1.6_ new <app-name> --api --minimal -T --database=postgresql
+rails _6.1.6_ new clubsystem --api --minimal -T --database=postgresql
+
+________________________________________________________________
+➜  react-rails-project-setup-guide git:(main) ✗ rails _6.1.6_ new clubsystem --api --minimal -T --database=postgresql
+      create  
+      create  README.md
+      create  Rakefile
+      create  .ruby-version
+      create  config.ru
+      create  .gitignore
+      create  .gitattributes
+      create  Gemfile
+         run  git init from "."
+Initialized empty Git repository in /Users/bj/Development/code/phase-4/project/clubsystem/react-rails-project-setup-guide/clubsystem/.git/
+      create  app
+      create  app/assets/config/manifest.js
+      create  app/assets/stylesheets/application.css
+      create  app/channels/application_cable/channel.rb
+      create  app/channels/application_cable/connection.rb
+      create  app/controllers/application_controller.rb
+      create  app/helpers/application_helper.rb
+      create  app/javascript/channels/consumer.js
+      create  app/javascript/channels/index.js
+      create  app/javascript/packs/application.js
+      create  app/jobs/application_job.rb
+      create  app/mailers/application_mailer.rb
+      create  app/models/application_record.rb
+      create  app/views/layouts/application.html.erb
+      create  app/views/layouts/mailer.html.erb
+      create  app/views/layouts/mailer.text.erb
+      create  app/assets/images
+      create  app/assets/images/.keep
+      create  app/controllers/concerns/.keep
+      create  app/models/concerns/.keep
+      create  bin
+      create  bin/rails
+      create  bin/rake
+      create  bin/setup
+      create  bin/spring
+      create  bin/yarn
+      remove  bin/spring
+      remove  bin/yarn
+      create  config
+      create  config/routes.rb
+      create  config/application.rb
+      create  config/environment.rb
+      create  config/puma.rb
+      create  config/environments
+      create  config/environments/development.rb
+      create  config/environments/production.rb
+      create  config/environments/test.rb
+      create  config/initializers
+      create  config/initializers/application_controller_renderer.rb
+      create  config/initializers/assets.rb
+      create  config/initializers/backtrace_silencers.rb
+      create  config/initializers/content_security_policy.rb
+      create  config/initializers/cookies_serializer.rb
+      create  config/initializers/cors.rb
+      create  config/initializers/filter_parameter_logging.rb
+      create  config/initializers/inflections.rb
+      create  config/initializers/mime_types.rb
+      create  config/initializers/new_framework_defaults_6_1.rb
+      create  config/initializers/permissions_policy.rb
+      create  config/initializers/wrap_parameters.rb
+      create  config/locales
+      create  config/locales/en.yml
+      create  config/master.key
+      append  .gitignore
+      create  config/boot.rb
+      create  config/database.yml
+      create  db
+      create  db/seeds.rb
+      create  lib
+      create  lib/tasks
+      create  lib/tasks/.keep
+      create  lib/assets
+      create  lib/assets/.keep
+      create  log
+      create  log/.keep
+      create  public
+      create  public/404.html
+      create  public/422.html
+      create  public/500.html
+      create  public/apple-touch-icon-precomposed.png
+      create  public/apple-touch-icon.png
+      create  public/favicon.ico
+      create  public/robots.txt
+      create  tmp
+      create  tmp/.keep
+      create  tmp/pids
+      create  tmp/pids/.keep
+      create  tmp/cache
+      create  tmp/cache/assets
+      create  vendor
+      create  vendor/.keep
+      remove  app/assets
+      remove  lib/assets
+      remove  tmp/cache/assets
+      remove  app/helpers
+      remove  test/helpers
+      remove  app/views
+      remove  public/404.html
+      remove  public/422.html
+      remove  public/500.html
+      remove  public/apple-touch-icon-precomposed.png
+      remove  public/apple-touch-icon.png
+      remove  public/favicon.ico
+      remove  app/javascript/packs
+      create  app/javascript/.keep
+      remove  config/initializers/assets.rb
+      remove  app/jobs
+      remove  app/views/layouts/mailer.html.erb
+      remove  app/views/layouts/mailer.text.erb
+      remove  app/mailers
+      remove  test/mailers
+      remove  app/javascript/channels
+      remove  app/channels
+      remove  test/channels
+      remove  config/initializers/cookies_serializer.rb
+      remove  config/initializers/content_security_policy.rb
+      remove  config/initializers/permissions_policy.rb
+      remove  config/initializers/new_framework_defaults_6_1.rb
+         run  bundle install
+Fetching gem metadata from https://rubygems.org/...........
+Resolving dependencies...
+Using rake 13.0.6
+Using concurrent-ruby 1.1.10
+Using minitest 5.16.2
+Using zeitwerk 2.6.0
+Using builder 3.2.4
+Using erubi 1.10.0
+Using racc 1.6.0
+Using crass 1.0.6
+Using rack 2.2.4
+Using ffi 1.15.5
+Using websocket-extensions 0.1.5
+Using method_source 1.0.0
+Using mini_mime 1.1.2
+Using thor 1.2.1
+Using bundler 2.3.19
+Using nio4r 2.5.8
+Using rb-fsevent 0.11.1
+Using marcel 1.0.2
+Using pg 1.4.2
+Using websocket-driver 0.7.5
+Using mail 2.7.1
+Using tzinfo 2.0.5
+Using nokogiri 1.13.8 (arm64-darwin)
+Using rack-test 2.0.2
+Using sprockets 4.1.1
+Using loofah 2.18.0
+Using rb-inotify 0.10.1
+Using byebug 11.1.3
+Using rails-html-sanitizer 1.4.3
+Using listen 3.7.1
+Using i18n 1.12.0
+Using puma 5.6.4
+Using activesupport 6.1.6.1
+Using rails-dom-testing 2.0.3
+Using globalid 1.0.0
+Using activemodel 6.1.6.1
+Using activejob 6.1.6.1
+Using actionview 6.1.6.1
+Using activerecord 6.1.6.1
+Using actionpack 6.1.6.1
+Using actioncable 6.1.6.1
+Using activestorage 6.1.6.1
+Using actionmailer 6.1.6.1
+Using railties 6.1.6.1
+Using actionmailbox 6.1.6.1
+Using actiontext 6.1.6.1
+Using sprockets-rails 3.4.2
+Using rails 6.1.6.1
+Bundle complete! 6 Gemfile dependencies, 48 gems now installed.
+Use `bundle info [gemname]` to see where a bundled gem is installed.
+         run  bundle binstubs bundler
+
+Later also added 'faker'
+Fetching faker 2.22.0
+________________________________________________________________
+cd clubsystem
+
+bundle lock --add-platform x86_64-linux --add-platform ruby
+➜  clubsystem git:(main) ✗ bundle lock --add-platform x86_64-linux --add-platform ruby
+Fetching gem metadata from https://rubygems.org/..........
+Resolving dependencies...
+Writing lockfile to /Users/bj/Development/code/phase-4/project/clubsystem/react-rails-project-setup-guide/clubsystem/Gemfile.lock
+________________________________________________________________
+vi Gemfile
+You'll need to uncomment the bcrypt gem and run bundle to install it.
+
+# Reduces boot times through caching; required in config/boot.rb
+gem 'bootsnap', '>= 1.4.4', require: false
+
+I also added this:
+gem "active_model_serializers", "~> 0.10.12"
+
+
+Added this into "group :development do" stanza:
+  # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
+  gem 'spring'
+
+# Used to generate seed data
+# https://github.com/faker-ruby/faker
+gem "faker", "~> 2.18"
+________________________________________________________________
+➜  clubsystem git:(main) ✗ bundle install
+Fetching gem metadata from https://rubygems.org/..........
+Resolving dependencies...
+Using rake 13.0.6
+Using concurrent-ruby 1.1.10
+Using minitest 5.16.2
+Using zeitwerk 2.6.0
+Using builder 3.2.4
+Using erubi 1.10.0
+Using mini_mime 1.1.2
+Using crass 1.0.6
+Using rack 2.2.4
+Using bundler 2.3.19
+Using websocket-extensions 0.1.5
+Using byebug 11.1.3
+Using marcel 1.0.2
+Using rb-fsevent 0.11.1
+Using bcrypt 3.1.18
+Using pg 1.4.2
+Using msgpack 1.5.4
+Using spring 4.0.0
+Using ffi 1.15.5
+Using tzinfo 2.0.5
+Using jsonapi-renderer 0.2.2
+Using rack-test 2.0.2
+Using thor 1.2.1
+Using sprockets 4.1.1
+Using nio4r 2.5.8
+Using rb-inotify 0.10.1
+Using puma 5.6.4
+Using websocket-driver 0.7.5
+Using listen 3.7.1
+Using bootsnap 1.13.0
+Using racc 1.6.0
+Using mail 2.7.1
+Using method_source 1.0.0
+Using nokogiri 1.13.8 (arm64-darwin)
+Using i18n 1.12.0
+Using loofah 2.18.0
+Using activesupport 6.1.6.1
+Using rails-html-sanitizer 1.4.3
+Using rails-dom-testing 2.0.3
+Using globalid 1.0.0
+Using activemodel 6.1.6.1
+Using case_transform 0.2
+Using activejob 6.1.6.1
+Using activerecord 6.1.6.1
+Using actionview 6.1.6.1
+Using actionpack 6.1.6.1
+Using sprockets-rails 3.4.2
+Using actioncable 6.1.6.1
+Using activestorage 6.1.6.1
+Using actionmailer 6.1.6.1
+Using active_model_serializers 0.10.13
+Using actionmailbox 6.1.6.1
+Using actiontext 6.1.6.1
+Using railties 6.1.6.1
+Using rails 6.1.6.1
+Bundle complete! 10 Gemfile dependencies, 55 gems now installed.
+Use `bundle info [gemname]` to see where a bundled gem is installed.
+________________________________________________________________
+➜  clubsystem git:(main) ✗ rails db:create
+Created database 'clubsystem_development'
+Created database 'clubsystem_test'
+________________________________________________________________
+➜  clubsystem git:(main) ✗ vi config/application.rb   (added the lines below to the end)
+
+    # Adding back cookies and session middleware
+    config.middleware.use ActionDispatch::Cookies
+    config.middleware.use ActionDispatch::Session::CookieStore
+
+    # Use SameSite=Strict for all cookies to help protect against CSRF
+    config.action_dispatch.cookies_same_site_protection = :strict
+
+________________________________________________________________
+added this using vi:
+
+➜  clubsystem git:(main) ✗ vi app/controllers/application_controller.rb 
+
+  include ActionController::Cookies
+
+  def hello_world
+    session[:count] = (session[:count] || 0) + 1
+    render json: { count: session[:count] }
+  end
+________________________________________________________________
+
+added this to config/routes.rb
+
+  # route to test our configuration
+  get '/hello', to: 'application#hello_world'
+________________________________________________________________
+
+rails g resource user username first_name last_name age:integer bio email password_digest
+
+rails g resource club name subject project description 
+
+rails db:migrate
+
+rails g migration add_leader_to_clubs leader:bigint:index
+# add the following line to this index migration:
+add_foreign_key :clubs, :users, column: :leader, on_delete: :nullify
+# NOTES re :on_delete
+# https://ashton.codes/the-difference-between-on_delete-restrict-nullify-and-cascade/
+# Hmm, if a user is deleted who is leader of a club, then what to do with the "leader" attribute in that record?
+# :cascade - Delete the whole club because no leader? Sounds extreme.
+# :nullify - by turning value to null, the club's activity could be suspended
+# :restrict - don't allow deleting the user since a leader value depends on it. But the user wants out!
+
+rails db:migrate
+
+rails g resource ClubMember club:belongs_to user:belongs_to
+
+# edit app/models/club.rb, app/models/user.rb to add has_many relationships
+
+rails db:migrate
+rails db:seed
+
+________________________________________________________________
+➜  clubsystem git:(main) ✗ rails g resource user username first_name last_name age:integer bio email password_digest
+      invoke  active_record
+      create    db/migrate/20220802034352_create_users.rb
+      create    app/models/user.rb
+      invoke  controller
+      create    app/controllers/users_controller.rb
+      invoke  resource_route
+       route    resources :users
+      invoke  serializer
+      create    app/serializers/user_serializer.rb
+➜  clubsystem git:(main) ✗ rails g resource club name subject project description
+      invoke  active_record
+      create    db/migrate/20220802034430_create_clubs.rb
+      create    app/models/club.rb
+      invoke  controller
+      create    app/controllers/clubs_controller.rb
+      invoke  resource_route
+       route    resources :clubs
+      invoke  serializer
+      create    app/serializers/club_serializer.rb
+
+  ➜  clubsystem git:(main) ✗ rails db:migrate
+== 20220802034352 CreateUsers: migrating ======================================
+-- create_table(:users)
+   -> 0.0092s
+== 20220802034352 CreateUsers: migrated (0.0092s) =============================
+
+== 20220802034430 CreateClubs: migrating ======================================
+-- create_table(:clubs)
+   -> 0.0055s
+== 20220802034430 CreateClubs: migrated (0.0055s) =============================
+
+➜  clubsystem git:(main) ✗ rails g migration add_leader_to_clubs leader:bigint:index
+      invoke  active_record
+      create    db/migrate/20220802034822_add_leader_to_clubs.rb
+➜  clubsystem git:(main) ✗ vi db/migrate/20220802034822_add_leader_to_clubs.rb
+
+class AddLeaderToClubs < ActiveRecord::Migration[6.1]
+  def change
+    add_column :clubs, :leader, :bigint
+    add_index :clubs, :leader
+
+    add_foreign_key :clubs, :users, column: :leader, on_delete: :nullify
+  end
+end
+
+
+➜  clubsystem git:(main) ✗ rails db:migrate                                         
+== 20220802034822 AddLeaderToClubs: migrating =================================
+-- add_column(:clubs, :leader, :bigint)
+   -> 0.0071s
+-- add_index(:clubs, :leader)
+   -> 0.0024s
+-- add_foreign_key(:clubs, :users, {:column=>:leader, :on_delete=>:nullify})
+   -> 0.0151s
+== 20220802034822 AddLeaderToClubs: migrated (0.0246s) ========================
+
+➜  clubsystem git:(main) ✗ rails g resource ClubMember club:belongs_to user:belongs_to
+      invoke  active_record
+      create    db/migrate/20220802035329_create_club_members.rb
+      create    app/models/club_member.rb
+      invoke  controller
+      create    app/controllers/club_members_controller.rb
+      invoke  resource_route
+       route    resources :club_members
+      invoke  serializer
+      create    app/serializers/club_member_serializer.rb
+
+
+________________________________________________________________
+Can run a quick test via:
+$ rails s
+Head to the browser and open up http://localhost:3000/hello
+
+Looks good. Let's commit:
+
+
+________________________________________________________________
+rails g controller fallback
+rails g controller api/sessions
+
+add this to config/routes.rb:
+get "*path", to: "fallback#index", constraints: ->(req) { !req.xhr? && req.format.html? }
+
+➜  heroku_clubbing git:(main) rails g controller fallback
+      create  app/controllers/fallback_controller.rb
+
+modify fallback_controller.rb to contain:
+class FallbackController < ActionController::Base
+  def index
+    render file: 'public/index.html'
+  end
+end
+________________________________________________________________
+
+________________________________________________________________
+
+________________________________________________________________
+
+________________________________________________________________
+
+________________________________________________________________
+
+________________________________________________________________
+
+________________________________________________________________
