@@ -606,6 +606,117 @@ increment by 1 each time.
 Also working:
 http://localhost:3000/api/clubs
 http://localhost:3000/api/users/1
+
+$ git add .
+$ git commit -m 'Rails setup'
+________________________________________________________________
+React Setup
+➜  clubsystem git:(main) ✗ npx create-react-app client --use-npm
+
+takes a while to run. Finishes with:
+6 high severity vulnerabilities
+
+To address all issues (including breaking changes), run:
+  npm audit fix --force
+
+Run `npm audit` for details.
+
+Success! Created client at /Users/bj/Development/code/phase-4/project/clubsystem/react-rails-project-setup-guide/clubsystem/client
+Inside that directory, you can run several commands:
+
+  npm start
+    Starts the development server.
+
+  npm run build
+    Bundles the app into static files for production.
+
+  npm test
+    Starts the test runner.
+
+  npm run eject
+    Removes this tool and copies build dependencies, configuration files
+    and scripts into the app directory. If you do this, you can’t go back!
+
+We suggest that you begin by typing:
+
+  cd client
+  npm start
+
+Happy hacking!
+________________________________________________________________
+Update client/package.json
+
+To set up this proxy feature, add this to root level:
+"proxy": "http://localhost:3000"
+
+The "start" script must specify a different port to run our React app in development:
+"scripts": {
+  "start": "PORT=4000 react-scripts start"
+________________________________________________________________
+update client/src/App.js with this:
+
+import { useState, useEffect } from "react";
+
+function App() {
+  const [count, setCount] = useState(0);
+
+  useEffect(() => {
+    fetch("/hello")
+      .then((r) => r.json())
+      .then((data) => setCount(data.count));
+  }, []);
+
+  return (
+    <div className="App">
+      <h1>Page Count: {count}</h1>
+    </div>
+  );
+}
+
+export default App;
+
+
+Next, run the Rails server in one terminal:
+
+$ rails s
+Open another terminal and run the React server:
+
+$ npm start --prefix client
+
+view your React application at http://localhost:4000/. You should be able to refresh
+the page and see the count state increment on each refresh
+
+$ git add .
+$ git commit -m 'React setup'
+________________________________________________________________
+
+________________________________________________________________
+
+________________________________________________________________
+
+________________________________________________________________
+
+________________________________________________________________
+
+________________________________________________________________
+
+________________________________________________________________
+
+________________________________________________________________
+
+________________________________________________________________
+
+________________________________________________________________
+
+________________________________________________________________
+
+________________________________________________________________
+
+________________________________________________________________
+________________________________________________________________
+
+________________________________________________________________
+
 ________________________________________________________________
 
 ________________________________________________________________
