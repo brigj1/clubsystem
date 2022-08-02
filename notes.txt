@@ -689,13 +689,114 @@ the page and see the count state increment on each refresh
 $ git add .
 $ git commit -m 'React setup'
 ________________________________________________________________
+Check on version of Node on our system:
+➜  heroku_clubbing git:(main) node -v
+v16.14.2
 
+Use this value in building a package.json in the root directory.
+
+{
+    "name": "heroku_clubsystem",
+    "version": "1.0.0",
+    "description": "Build scripts for Heroku",
+    "engines": {
+      "node": "16.14.2"
+    },
+    "scripts": {
+      "clean": "rm -rf public",
+      "build": "npm install --prefix client && npm run build --prefix client",
+      "deploy": "cp -a client/build/. public/",
+      "heroku-postbuild": "npm run clean && npm run build && npm run deploy"
+    },
+    "author": "Lori/Brigham/Ashley"
+}
+
+You can see what this command does locally by running it from your terminal:
+➜  clubsystem git:(main) ✗ npm run heroku-postbuild
+
+> heroku_clubsystem@1.0.0 heroku-postbuild
+> npm run clean && npm run build && npm run deploy
+
+
+> heroku_clubsystem@1.0.0 clean
+> rm -rf public
+
+
+> heroku_clubsystem@1.0.0 build
+> npm install --prefix client && npm run build --prefix client
+
+
+up to date, audited 1448 packages in 5s
+
+205 packages are looking for funding
+  run `npm fund` for details
+
+6 high severity vulnerabilities
+
+To address all issues (including breaking changes), run:
+  npm audit fix --force
+
+Run `npm audit` for details.
+
+> client@0.1.0 build
+> react-scripts build
+
+Creating an optimized production build...
+Compiled successfully.
+
+File sizes after gzip:
+
+  46.87 kB  build/static/js/main.9ba4dc4f.js
+  1.78 kB   build/static/js/787.c4e7f8f9.chunk.js
+  541 B     build/static/css/main.073c9b0a.css
+
+The project was built assuming it is hosted at /.
+You can control this with the homepage field in your package.json.
+
+The build folder is ready to be deployed.
+You may serve it with a static server:
+
+  npm install -g serve
+  serve -s build
+
+Find out more about deployment here:
+
+  https://cra.link/deployment
+
+
+> heroku_clubsystem@1.0.0 deploy
+> cp -a client/build/. public/
+
+
+Note that via the "cp -a" command:
+The final output will end up in the public folder in the root of your project.
 ________________________________________________________________
+define additional custom scripts to run on server at runtime:
+➜  clubsystem git:(main) ✗ vi Procfile
 
+web: bundle exec rails s
+release: bin/rake db:migrate
 ________________________________________________________________
+➜  clubsystem git:(main) ✗ heroku create heroku_clubsystem
+Creating ⬢ heroku_clubsystem... !
+ ▸    Name must start with a letter, end with a letter or digit and can only contain lowercase letters, digits, and dashes.
 
+➜  clubsystem git:(main) ✗ heroku create hk-clubsystem    
+Creating ⬢ hk-clubsystem... done
+https://hk-clubsystem.herokuapp.com/ | https://git.heroku.com/hk-clubsystem.git
 ________________________________________________________________
+tell heroku that we have a node and ruby application and that we want to build the
+nodejs part first (this will build the app and copy it to the public directory).
 
+➜  clubsystem git:(main) ✗ heroku buildpacks:add heroku/nodejs --index 1
+Buildpack added. Next release on hk-clubsystem will use heroku/nodejs.
+Run git push heroku main to create a new release using this buildpack.
+
+➜  clubsystem git:(main) ✗ heroku buildpacks:add heroku/ruby --index 2
+Buildpack added. Next release on hk-clubsystem will use:
+  1. heroku/nodejs
+  2. heroku/ruby
+Run git push heroku main to create a new release using these buildpacks.
 ________________________________________________________________
 
 ________________________________________________________________
