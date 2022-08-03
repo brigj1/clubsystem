@@ -1,10 +1,17 @@
 //import { useEffect } from "react";
-import { useState } from "react";
+//import { useState } from "react";
+import { useForm } from "../hooks/useForm";
 
 const Login = ({ onLogin }) => {
-  //const [recentProjects, setRecentProjects] = useState([]);
-  const [username, setUsername] = useState("");
-  const [password, setPassword] = useState("");
+  const initialState = {
+    username: '',
+    password: '',
+  };
+    //password_confirmation: '',  // this is for signup...
+
+  // const [username, setUsername] = useState("");
+  // const [password, setPassword] = useState("");
+  const { formData, handleChange, reset } = useForm(initialState);
 
   // useEffect(() => {
   //   // fetch the 3 most recently added projects from json-server
@@ -17,15 +24,22 @@ const Login = ({ onLogin }) => {
 
   function handleSubmit(e) {
     e.preventDefault();
-    fetch("/login", {
+    const configObj = {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({ username, password }),
-    }).then((r) => {
-      if (r.ok) {
-        r.json().then((user) => onLogin(user));
+      // body: JSON.stringify({ username, password }),
+      body: JSON.stringify({ ...formData }),
+    };
+
+    fetch("/api/login", configObj)
+      .then((r) => {
+        if (r.ok) {
+          r.json().then((user) => {
+            onLogin(user);
+            reset();
+          });
       }
     });
   }
@@ -39,32 +53,26 @@ const Login = ({ onLogin }) => {
         a club with activities and people you would like to join.
       </p>
       <form onSubmit={handleSubmit}>
-      {/* <h3>Login With Username</h3> */}
-      <label htmlFor="username">Username: </label>
-      <input
-        type="text"
-        id="username"
-        value={username}
-        onChange={(e) => setUsername(e.target.value)}
-      />
-      <label htmlFor="password">Password: </label>
-      <input
-        type="password"
-        id="password"
-        value={password}
-        onChange={(e) => setPassword(e.target.value)}
-      />
-      <button type="submit">Login</button>
-    </form>
-      {/* <h3>Recent Projects:</h3>
-      {recentProjects.map((project) => (
-        <p key={project.id}>{project.name}</p>
-      ))}
-      <div style={{ margin: "1rem 0" }}>
-        <a className="button" href="/projects">
-          View All Projects
-        </a>
-      </div> */}
+        <label htmlFor="username">Username: </label>
+        <input
+          type="text"
+          id="username"
+          name="username"
+          onChange={handleChange}
+          value={formData.username}
+          // onChange={(e) => setUsername(e.target.value)}
+        />
+        <label htmlFor="password">Password: </label>
+        <input
+          type="password"
+          id="password"
+          name="password"
+          value={formData.password}
+          onChange={handleChange}
+          // onChange={(e) => setPassword(e.target.value)}
+        />
+        <button type="submit">Login</button>
+      </form>
     </section>
   );
 };

@@ -983,6 +983,25 @@ What about sensitive data?
 master.key - omitted via .gitignore?
 ________________________________________________________________
 
+Configured automatic deploys from (github) main to heroku
+https://dashboard.heroku.com/apps/hk-clubsystem/deploy/github
+Tuesday pm, August 2, 2022
+Testing of these two routes this morning was not working in a way
+I'd expect:
+https://hk-clubsystem.herokuapp.com/
+https://hk-clubsystem.herokuapp.com/testing
+But then, I didn't know what to expect and/or how to
+investigate!
+I happened to reread the notes about the fallback controller, and
+realized I had not replaced the class we inherit from! When I
+made this change then appearances got better. :-)
+- class FallbackController < ApplicationController
++ class FallbackController < ActionController::Base
+
+Hmm, is this working?
+client-side routes, like http://localhost:3000/testing,
+to verify that the fallback route configuration is working.
+
 ________________________________________________________________
 
 ________________________________________________________________

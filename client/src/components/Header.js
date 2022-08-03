@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 
 function Header({ user, onLogout }) {
   function handleLogout() {
-    fetch("/logout", {
+    fetch("/api/logout", {
       method: "DELETE",
     }).then(() => onLogout());
   }
@@ -18,7 +18,7 @@ function Header({ user, onLogout }) {
           <button onClick={handleLogout}>Logout</button>
         </div>
       ) : (
-        <Link to="/login">Click Here to Login</Link>
+        <Link to="/api/login">Click Here to Login</Link>
       )}
     </header>
   );

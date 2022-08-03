@@ -5,6 +5,12 @@ import { BrowserRouter, Switch, Route } from "react-router-dom";
 import Header from "./components/Header";
 import Login from "./components/Login";
 
+// Create a custom hook useForm
+// it needs to be a function
+// must start with 'use'
+// use other hooks inside of this custom hook such as useState, useEffect
+// the function needs to return an object: this object is going to contain is key value pairs. the keys are arbitrary, the values are the methods that have been defined inside of this hook. Typically, lets keep the key names the same as the method names
+
 function App() {
   const [count, setCount] = useState(0);
   const [user, setUser] = useState(null);
