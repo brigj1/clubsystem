@@ -941,6 +941,49 @@ work just fine because we're running a separate server for React.
 
 On http://localhost:4000 the state variable resets to 0 briefly before we see the clip.
 ________________________________________________________________
+The Flatiron doc points here for namespacing help (re routing):
+https://guides.rubyonrails.org/routing.html#controller-namespaces-and-routing
+________________________________________________________________
+You can test out if the new code for handling client-side routing is working locally by building a production version of your React application and running the Rails server. To do this, you can use the same heroku-postbuild script locally as Heroku will run in production to build the React project:
+
+$ npm run heroku-postbuild
+Then, run the Rails server:
+
+$ rails s
+Now, visiting http://localhost:3000 (not 4000) will show the production version of the React application, served from the public/index.html file!
+
+You should also be able to visit other client-side routes, like http://localhost:3000/testing, to verify that the fallback route configuration is working.
+________________________________________________________________
+$ git add .
+$ git commit -m 'Configured client-side routing'
+$ git push heroku main
+
+➜  clubsystem git:(main) ✗ git add .
+➜  clubsystem git:(main) ✗  git commit -m 'Configured client-side routing'
+[main 6bead0c] Configured client-side routing
+ 5 files changed, 389 insertions(+), 46 deletions(-)
+ rewrite client/src/App.js (70%)
+ copy client/src/{App.js => bk220802a-App.js} (100%)
+
+
+ Test your client-side routes in the deployed application once the new version is built and released:
+https://hk-clubsystem.herokuapp.com/
+https://hk-clubsystem.herokuapp.com/testing
+
+________________________________________________________________
+
+First, create a new remote repository on GitHub. 
+https://docs.github.com/en/get-started/importing-your-projects-to-github/importing-source-code-to-github/adding-locally-hosted-code-to-github#adding-a-project-to-github-without-github-cli
+
+To learn more about GitHubCLI:
+https://docs.github.com/en/github-cli/github-cli/about-github-cli
+
+
+What about sensitive data?
+master.key - omitted via .gitignore?
+________________________________________________________________
+
+________________________________________________________________
 
 ________________________________________________________________
 
