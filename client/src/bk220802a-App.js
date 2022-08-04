@@ -1,7 +1,9 @@
-//import logo from './logo.svg';
 import './App.css';
 
 import { useState, useEffect } from "react";
+
+// Remove all of the references to count on both the homepage and on the /testing route.  
+// We need to add either the login/signup links on homepage or create a nav bar to direct users to it
 
 function App() {
   const [count, setCount] = useState(0);
@@ -21,7 +23,6 @@ function App() {
   // return (
   //   <div className="App">
   //     <header className="App-header">
-  //       <img src={logo} className="App-logo" alt="logo" />
   //       <p>
   //         Edit <code>src/App.js</code> and save to reload.
   //       </p>
