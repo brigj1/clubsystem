@@ -16,6 +16,13 @@ import ClubWelcome from "./ClubWelcome";
 // use other hooks inside of this custom hook such as useState, useEffect
 // the function needs to return an object: this object is going to contain is key value pairs. the keys are arbitrary, the values are the methods that have been defined inside of this hook. Typically, lets keep the key names the same as the method names
 
+// LORI - 8/3/2022 @ 9:40pm EST 
+// Remove all of the references to count on both the homepage and on the /testing route.  
+// We need to add either the login/signup links on homepage or create a nav bar to direct users to it
+// Also, we don't need __TWO__ App.js files.  Unless one has more information or is used as a placeholder, the bk220802a... file can be removed ASAP.
+// The /testing route seems unnecessary unless we can use it to direct to another route we need.  As in, we make the /testing something like /interests or /clubs
+
+
 function App() {
   //const [user, setUser] = useState(null);
   const [currentUser, setCurrentUser] = useState(null);
