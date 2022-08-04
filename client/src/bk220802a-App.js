@@ -6,18 +6,16 @@ import { useState, useEffect } from "react";
 // We need to add either the login/signup links on homepage or create a nav bar to direct users to it
 
 function App() {
-  const [count, setCount] = useState(0);
-  console.log("count: " + count)
+
 
   useEffect(() => {
     fetch("/hello")
       .then((r) => r.json())
-      .then((data) => setCount(data.count));
+      .then((data) => console.log("hello"))
   }, []);
 
   return (
     <div className="App">
-      <h1>Page Count: {count}</h1>
     </div>
   );
   // return (
