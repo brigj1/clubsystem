@@ -1003,16 +1003,7 @@ client-side routes, like http://localhost:3000/testing,
 to verify that the fallback route configuration is working.
 
 ________________________________________________________________
-POST api/users
-{
-  "username": "dm",
-  "first_name": "d",
-  "last_name": "m",
-  "email": "dm@example.com"
-}
 
-"age": nil,
-"bio": nil,
 ________________________________________________________________
 
 ________________________________________________________________

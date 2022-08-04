@@ -17,12 +17,4 @@ class Api::SessionsController < ApplicationController
     session.delete(:user_id)
   end
 
-  def xdestroy  # another way...
-    if current_user
-      session.clear
-    else
-      render json: { errors: "No active session" }, status: :unauthorized
-    end
-  end
-
 end

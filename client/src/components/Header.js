@@ -18,8 +18,7 @@ function Header({ user, onLogout }) {
           <button onClick={handleLogout}>Logout</button>
         </div>
       ) : (
-        // <Link to="/login">Click Here to Login</Link>
-        <Link to="/signup">Click Here to Sign Up for an Account</Link>
+        <Link to="/api/login">Click Here to Login</Link>
       )}
     </header>
   );
