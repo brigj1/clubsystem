@@ -20,6 +20,12 @@ class Api::UsersController < ApplicationController
         render json: { error: user.errors }, status: :unprocessable_entity
       end
     end
+
+    def update
+      user = User.find(session[:user_id])
+      user.update!(user_params)
+      render json: user, status: :accepted
+    end
   
     private
   

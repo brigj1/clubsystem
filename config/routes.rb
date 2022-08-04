@@ -2,7 +2,7 @@ Rails.application.routes.draw do
   namespace :api do
     resources :club_members
     resources :clubs, only: [:index]
-    resources :users, only: [:show]
+    resources :users, only: [:show, :update]
     # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
   
     get "/me", to: "users#show"

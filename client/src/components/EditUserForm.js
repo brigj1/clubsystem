@@ -15,17 +15,27 @@ const EditUserForm = () => {
         password_confirmation: ''
     };
 
-    const { formData, handleChange, reset } = useForm(initialState);
+    //const { formData, handleChange, reset } = useForm(initialState);
+    const { formData, handleChange } = useForm(initialState);
     const [errors, setErrors] = useState([]);
     const history = useHistory();
 
+    // This initial "useEffect" is getting the current set of user profile info to
+    // prepopulate the form with what we know. I believe the warning is coming because
+    // "useForm" is not a known thing like "useState" would be regarding creating the
+    // "handleChange" method. i.e. getting this warning:
+    // React Hook useEffect has missing dependencies: 'handleChange' and 'id'.
+    // Either include them or remove the dependency array.
+    //
+    // QUESTION: will we have an id? Or maybe a current_user to work with, get id from that?
+    // Note: path that got us here from App is(?): <Route path='/users/:id'>
     const {id} = useParams()
     useEffect(() => {
       fetch(`/api/users/${id}`)
       .then(res => res.json())
-      .then(handleChange)
+      .then(handleChange)  // Is this the right action? It's triggering warning re []
     },[])
-      //.then(setFormData)
+      //.then(setFormData)  // but "handleChange" is our way of setting form data.
 
     function handleSubmit(e){
       e.preventDefault()
@@ -41,6 +51,7 @@ const EditUserForm = () => {
           // seems weird to setCurrentUser - they should already be current_user! Unless admin is changing them?
           //res.json().then(setCurrentUser)  // updateProduction
           //history.push(`/api/users/${user.id}`);
+          history.push("/");
         } else {
           //Display errors
           res.json().then(data => setErrors(Object.entries(data.errors).map(e => `${e[0]} ${e[1]}`)))
