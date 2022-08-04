@@ -3,8 +3,6 @@ class ApplicationController < ActionController::API
   rescue_from ActiveRecord::RecordInvalid, with: :render_validation_errors
   rescue_from ActiveRecord::RecordNotFound, with: :render_not_found
   before_action :authenticate_user
-  
-  # , except: [:hello_world]
 
   def hello_world
     session[:count] = (session[:count] || 0) + 1

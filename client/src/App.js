@@ -3,9 +3,7 @@ import { useState, useEffect } from "react";
 import { BrowserRouter, Switch, Route } from "react-router-dom";
 
 import Header from "./components/Header";
-import Signup from "./components/Signup";
 import Login from "./components/Login";
-import EditUserForm from "./components/EditUserForm";
 
 // Create a custom hook useForm
 // it needs to be a function
@@ -23,7 +21,6 @@ import EditUserForm from "./components/EditUserForm";
 function App() {
   const [count, setCount] = useState(0);
   const [user, setUser] = useState(null);
-  const [currentUser, setCurrentUser] = useState(null);
 
   useEffect(() => {
     fetch("/hello")
@@ -51,17 +48,10 @@ function App() {
             <h1>Page Count: {count}</h1>
             <Login onLogin={handleLogin} />
           </Route>
-          <Route path='/signup'>
-            <Signup setCurrentUser={setCurrentUser} />
-          </Route>
-          <Route path='/users/:id'>
-            <EditUserForm setCurrentUser={setCurrentUser} />
-          </Route>
         </Switch>
       </div>
     </BrowserRouter>
   );
 }
-          // <Route path='/users/new'></Route>
 
 export default App;
