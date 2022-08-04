@@ -21,6 +21,7 @@ import EditUserForm from "./components/EditUserForm";
 
 
 function App() {
+  const [count, setCount] = useState(0);
   const [user, setUser] = useState(null);
   const [currentUser, setCurrentUser] = useState(null);
 
@@ -47,6 +48,7 @@ function App() {
             <h1>Test Route</h1>
           </Route>
           <Route exact path="/login">
+            <h1>Page Count: {count}</h1>
             <Login onLogin={handleLogin} />
           </Route>
           <Route path='/signup'>
