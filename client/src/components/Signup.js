@@ -62,6 +62,8 @@ const SignUp = ({ setCurrentUser }) => {
     //   }
     return (
       <> 
+         <br />
+         <h4>Sign up for an account!</h4>
       <form onSubmit={handleSubmit}>
         <label htmlFor="first_name">First Name: </label>
         <input

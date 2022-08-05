@@ -1,25 +1,20 @@
 // client/src/components/App.js
 import { React, useState, useEffect } from "react";
-import { BrowserRouter } from "react-router-dom";
 //import { BrowserRouter, Switch, Route } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 
-import Header from "./components/Header";  // This likely needs a home somewhere
 import GenericHome from "./GenericHome";
 import ClubWelcome from "./ClubWelcome";
+import Header from "./components/Header";
 //import Signup from "./components/Signup";
 //import Login from "./components/Login";
 //import EditUserForm from "./components/EditUserForm";
-
-// Create a custom hook useForm
-// it needs to be a function
-// must start with 'use'
-// use other hooks inside of this custom hook such as useState, useEffect
-// the function needs to return an object: this object is going to contain is key value pairs. the keys are arbitrary, the values are the methods that have been defined inside of this hook. Typically, lets keep the key names the same as the method names
 
 function App() {
   //const [user, setUser] = useState(null);
   const [currentUser, setCurrentUser] = useState(null);
   const [authChecked, setAuthChecked] = useState(false)
+  const history = useHistory();
 
   useEffect(() => {
     fetch('/api/me', {
@@ -45,13 +40,29 @@ function App() {
   //   setUser(null);
   // }
 
+  function handleLogout() {
+    //setUser(null);
+    fetch(`/api/logout`, {
+      // credentials: 'include', // xme
+      method: 'DELETE'
+    })
+    .then(res => {
+      if (res.ok) {
+        setCurrentUser(null)
+        history.push('/')
+      }
+    })
+  }
+
   if(!authChecked) { return <div></div>}
   return (
-    <BrowserRouter>
+    <div>
+      <Header currentUser={currentUser} handleLogout={handleLogout}/>
       {currentUser ? (
           <ClubWelcome
             setCurrentUser={setCurrentUser}
             currentUser={currentUser}
+            handleLogout={handleLogout}
           />
         ) : (
           <GenericHome
@@ -59,31 +70,9 @@ function App() {
           />
         )
       }
-    </BrowserRouter>
+    </div>
   )
 
-  // return (
-  //   <BrowserRouter>
-  //     <div className="App">
-  //       <Header user={user} onLogout={handleLogout} />
-  //       <Switch>
-  //         <Route path="/testing">
-  //           <h1>Test Route</h1>
-  //         </Route>
-  //         <Route exact path="/login">
-  //           <h1>Page Count: {count}</h1>
-  //           <Login onLogin={handleLogin} />
-  //         </Route>
-  //         <Route path='/signup'>
-  //           <Signup setCurrentUser={setCurrentUser} />
-  //         </Route>
-  //         <Route path='/users/:id'>
-  //           <EditUserForm setCurrentUser={setCurrentUser} />
-  //         </Route>
-  //       </Switch>
-  //     </div>
-  //   </BrowserRouter>
-  // );
 }
 
 export default App;

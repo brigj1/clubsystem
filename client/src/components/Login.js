@@ -1,15 +1,12 @@
-// import { useEffect, useState } from "react";
 import { useForm } from "../hooks/useForm";
 
-const Login = ({ onLogin }) => {
+// const Login = ({ onLogin }) =>
+const Login = ({ setCurrentUser }) => {
   const initialState = {
     username: '',
     password: '',
   };
-    //password_confirmation: '',  // this is for signup...
 
-  // const [username, setUsername] = useState("");
-  // const [password, setPassword] = useState("");
   const { formData, handleChange, reset } = useForm(initialState);
 
   // useEffect(() => {
@@ -28,7 +25,6 @@ const Login = ({ onLogin }) => {
       headers: {
         "Content-Type": "application/json",
       },
-      // body: JSON.stringify({ username, password }),
       body: JSON.stringify({ ...formData }),
     };
 
@@ -36,7 +32,7 @@ const Login = ({ onLogin }) => {
       .then((r) => {
         if (r.ok) {
           r.json().then((user) => {
-            onLogin(user);
+            setCurrentUser(user);
             reset();
           });
       }
@@ -45,12 +41,6 @@ const Login = ({ onLogin }) => {
 
   return (
     <section className="box">
-      {/* <h2 style={{ fontSize: "3rem" }}>Join the Club!</h2> */}
-      <h2>Join the Club!</h2>
-      <p>
-        With more than 12 local affiliates and growing, there's bound to be
-        a club with activities and people you would like to join.
-      </p>
       <form onSubmit={handleSubmit}>
         <label htmlFor="username">Username: </label>
         <input
@@ -59,7 +49,6 @@ const Login = ({ onLogin }) => {
           name="username"
           onChange={handleChange}
           value={formData.username}
-          // onChange={(e) => setUsername(e.target.value)}
         />
         <label htmlFor="password">Password: </label>
         <input
@@ -68,7 +57,6 @@ const Login = ({ onLogin }) => {
           name="password"
           value={formData.password}
           onChange={handleChange}
-          // onChange={(e) => setPassword(e.target.value)}
         />
         <button type="submit">Login</button>
       </form>
