@@ -1004,6 +1004,30 @@ to verify that the fallback route configuration is working.
 
 ________________________________________________________________
 
+big comment chunk in App.js about to be deleted!
+
+  // return (
+  //   <BrowserRouter>
+  //     <div className="App">
+  //       <Header user={user} onLogout={handleLogout} />
+  //       <Switch>
+  //         <Route path="/testing">
+  //           <h1>Test Route</h1>
+  //         </Route>
+  //         <Route exact path="/login">
+  //           <h1>Page Count: {count}</h1>
+  //           <Login onLogin={handleLogin} />
+  //         </Route>
+  //         <Route path='/signup'>
+  //           <Signup setCurrentUser={setCurrentUser} />
+  //         </Route>
+  //         <Route path='/users/:id'>
+  //           <EditUserForm setCurrentUser={setCurrentUser} />
+  //         </Route>
+  //       </Switch>
+  //     </div>
+  //   </BrowserRouter>
+  // );
 ________________________________________________________________
 
 ________________________________________________________________
