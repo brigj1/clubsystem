@@ -1,12 +1,12 @@
 // client/src/components/App.js
 import { React, useState, useEffect } from "react";
+//import { React, useState, useEffect } from "react";
 //import { BrowserRouter, Switch, Route } from "react-router-dom";
 import { useHistory } from "react-router-dom";
 
 import GenericHome from "./GenericHome";
 import ClubWelcome from "./ClubWelcome";
 import Header from "./components/Header";
-//import Signup from "./components/Signup";
 //import Login from "./components/Login";
 //import EditUserForm from "./components/EditUserForm";
 
@@ -41,7 +41,6 @@ function App() {
   // }
 
   function handleLogout() {
-    //setUser(null);
     fetch(`/api/logout`, {
       // credentials: 'include', // xme
       method: 'DELETE'

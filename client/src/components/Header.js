@@ -16,11 +16,10 @@ function Header({ currentUser, handleLogout }) {
       {currentUser ? (
         <div>
           <p>Welcome, {currentUser.username}!</p>
-          {/* <button onClick={handleLogout}>Logout</button> */}
           <button onClick={handleLogout}>Logout</button>
         </div>
       ) : (
-        <Link to="/login" comment="be /api/login?">Click Here to Login</Link>
+        <Link to="/login">Click Here to Login</Link>
       )}
     </header>
   );

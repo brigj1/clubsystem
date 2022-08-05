@@ -10,6 +10,7 @@ export const useForm = (initialState) => {
   const [formData, setFormData] = useState(initialState);
 
   const handleChange = (e) => {
+    //console.log("e_target", e.target)
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
   };
