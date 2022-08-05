@@ -1,10 +1,14 @@
 import React, { useState, useEffect} from 'react'
 import { useParams, useHistory } from 'react-router-dom'
 import { useForm } from "../hooks/useForm";
+import UserContainer from "./UserContainer";
 
 //function EditProductionForm({updateProduction})
 //const EditUserForm = ({ setCurrentUser }) => ..
+//const EditUserForm = (user, onDeleteUser) => {
 const EditUserForm = () => {
+    const [users, setUsers] = useState([ ])
+
     const initialState = {
         first_name: '',
         last_name: '',
@@ -33,8 +37,26 @@ const EditUserForm = () => {
       fetch(`/api/users/${id}`)
       .then(res => res.json())
       .then(handleChange)  // Is this the right action? It's triggering warning re []
-    },[])
+    },[id, handleChange])
       //.then(setFormData)  // but "handleChange" is our way of setting form data.
+
+
+    const handleDeleteClick = () => {
+      console.log("delete: ", id)
+      fetch(`/api/users/${id}`, {
+        method: "DELETE",
+      });
+      //onDeleteUser(user)
+        //.then((resp) => console.log(resp))
+        //.then(onDeleteUser(user));
+    };
+
+    const handleViewAllClick = () => {
+      fetch("/api/users/", {
+      })
+      .then(res => res.json())
+      .then(setUsers)
+    };
 
     function handleSubmit(e){
       e.preventDefault()
@@ -115,6 +137,15 @@ const EditUserForm = () => {
        
         <input type='submit' value='Update User Profile' />
       </form>
+      <button onClick={handleViewAllClick}>
+            View all Clubbers
+      </button>
+      <button onClick={handleDeleteClick}>
+            Delete User
+      </button>
+      <div>
+        <UserContainer users={users} />
+      </div>
       {errors?errors.map(e => <h2 style={{color:'red'}}>{e.toUpperCase()}</h2>):null}
       </div>
     )

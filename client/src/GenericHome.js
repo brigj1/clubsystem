@@ -8,8 +8,8 @@ import Signup from "./components/Signup";
 import Login from "./components/Login";
 //import EditUserForm from "./components/EditUserForm";
 
-function GenericHome({ setCurrentUser }) {
-  console.log("generic_home: ", setCurrentUser);
+function GenericHome({ setCurrentUser, users }) {
+  //console.log("generic_home: ", setCurrentUser);
 
   return (
     <div>

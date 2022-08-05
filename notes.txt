@@ -1029,7 +1029,23 @@ big comment chunk in App.js about to be deleted!
   //   </BrowserRouter>
   // );
 ________________________________________________________________
+Hussain Arif
+Jun 16, 2021
+How To Efficiently Display Data in Tables With React
+Supercharge your tables with React Table
+https://betterprogramming.pub/how-to-efficiently-display-data-in-tables-with-react-7e133bad5719
 
+
+npm i react-table
+
+Ack! uses React v7. demo didn't work for me.
+
+
+Hmm, might needed v6:
+npm i react-table-v6
+
+examples for v6
+https://codesandbox.io/s/9uh5c
 ________________________________________________________________
 
 ________________________________________________________________

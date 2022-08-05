@@ -1,6 +1,11 @@
 class Api::UsersController < ApplicationController
     skip_before_action :authenticate_user
 
+    def index
+      users = User.all
+      render json: users, status: :ok
+    end
+
     # get '/api/me'
     def show
       if current_user
@@ -25,6 +30,10 @@ class Api::UsersController < ApplicationController
       user = User.find(session[:user_id])
       user.update!(user_params)
       render json: user, status: :accepted
+    end
+
+    def destroy
+      User.find(session[:user_id]).destroy
     end
   
     private
